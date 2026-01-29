@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Products - Chai Culture</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1a0f3d 0%, #2d1b4e 100%);
+      color: #f5f0f8;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(52, 211, 153, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+      animation: bgShift 20s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes bgShift {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, 30px); }
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 10, 26, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+      z-index: 100;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    nav a {
+      color: #f5f0f8;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+
+    nav a:hover, nav a.active {
+      color: #f4d03f;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: #f5f0f8;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #f4d03f 0%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #d4d4f1;
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      margin: 3rem 0;
+    }
+
+    .product-card {
+      background: rgba(45, 27, 78, 0.6);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.2);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s;
+      z-index: 0;
+    }
+
+    .product-card:hover::before {
+      left: 100%;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.25);
+      border-color: rgba(52, 211, 153, 0.5);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #f4d03f;
+      margin-bottom: 0.7rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+
+    .product-description {
+      font-size: 1rem;
+      color: #d4d4f1;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .product-details {
+      position: relative;
+      z-index: 1;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+      font-size: 0.9rem;
+    }
+
+    .detail-label {
+      color: #34d399;
+      font-weight: 500;
+    }
+
+    .detail-value {
+      color: #f5f0f8;
+    }
+
+    .sizes-list {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .size-badge {
+      background: linear-gradient(135deg, #d4a017 0%, #b8860b 100%);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .product-button {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #f4d03f 0%, #d4af37 100%);
+      color: #1a0f3d;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      z-index: 2;
+    }
+
+    .product-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      nav ul { gap: 1rem; }
+      .products-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html" class="active">Products</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Our Premium Collection</h1>
+    <p class="subtitle">Handcrafted chai blends inspired by royal Indian traditions</p>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-image">
+          <img src="elaichi.webp" alt="Royal Elaichi chai" />
+        </div>
+        <div class="product-name">Royal Elaichi</div>
+        <div class="product-description">Aromatic cardamom infused with rich tea blend for a luxurious tea experience</div>
+        <div class="product-details">
+          <div class="detail-row">
+            <span class="detail-label">Ingredients:</span>
+            <span class="detail-value">Black Tea, Cardamom</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Available Sizes:</span>
+          </div>
+          <div class="sizes-list">
+            <span class="size-badge">100g - ₹249</span>
+            <span class="size-badge">250g - ₹499</span>
+          </div>
+        </div>
+        <button class="product-button">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">
+          <!-- Save this Tulsi pack image as tulsi-wellness.jpg in this folder -->
+          <img src="tulsi-wellness.jpeg" alt="Tulsi Wellness chai pack" />
+        </div>
+        <div class="product-name">Tulsi Wellness</div>
+        <div class="product-description">Holy basil blend with anti-inflammatory herbs for wellness-focused tea lovers</div>
+        <div class="product-details">
+          <div class="detail-row">
+            <span class="detail-label">Ingredients:</span>
+            <span class="detail-value">Green Tea, Tulsi, Ginger</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Available Sizes:</span>
+          </div>
+          <div class="sizes-list">
+            <span class="size-badge">100g - ₹299</span>
+            <span class="size-badge">500g - ₹899</span>
+          </div>
+        </div>
+        <button class="product-button">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">
+          <!-- Save this Ginger/Golden Spice pack image as golden-spice.jpg in this folder -->
+          <img src="golden-spice.jpg" alt="Golden Spice ginger chai pack" />
+        </div>
+        <div class="product-name">Golden Spice</div>
+        <div class="product-description">Turmeric, cinnamon & ginger powerhouse for immune support and warmth</div>
+        <div class="product-details">
+          <div class="detail-row">
+            <span class="detail-label">Ingredients:</span>
+            <span class="detail-value">Turmeric, Cinnamon, Ginger</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Available Sizes:</span>
+          </div>
+          <div class="sizes-list">
+            <span class="size-badge">100g - ₹349</span>
+            <span class="size-badge">1kg - ₹2,999</span>
+          </div>
+        </div>
+        <button class="product-button">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">
+          <!-- Save the attached pack image as royal-masala.jpg in this folder -->
+          <img src="royal-masala.jpg" alt="Royal Masala Chai Pack" />
+        </div>
+        <div class="product-name">Royal Masala</div>
+        <div class="product-description">Heritage blend of 5+ natural spices crafted from ancestral recipes</div>
+        <div class="product-details">
+          <div class="detail-row">
+            <span class="detail-label">Ingredients:</span>
+            <span class="detail-value">5+ Spices</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Available Sizes:</span>
+          </div>
+          <div class="sizes-list">
+            <span class="size-badge">250g - ₹399</span>
+            <span class="size-badge">1kg - ₹1,399</span>
+          </div>
+        </div>
+        <button class="product-button">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function handleAddToCartClick(event) {
+      event.preventDefault();
+      alert('You can buy once we launch our products ,, dont forget to enter your mail for notification!!!!');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var buttons = document.querySelectorAll('.product-button');
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', handleAddToCartClick);
+      });
+    });
+  </script>
+
+  <script src="https://kit.fontawesome.com/3a3d3c3e3e.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - Chai Culture</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1a0f3d 0%, #2d1b4e 50%, #3d1a2a 100%);
+      background-attachment: fixed;
+      color: #28013e;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before 
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(139, 111, 71, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes bgShift {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, 30px); }
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 10, 26, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+      z-index: 100;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    nav a {
+      color: #7d0dbebc;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+
+    nav a:hover, nav a.active {
+      color: #f4d03f;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #d4a017 0%, #f4d03f 50%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #f4d03f;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #6c09cf;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+
+    .story-section {
+      background: linear-gradient(135deg, rgba(45, 27, 78, 0.5) 0%, rgba(61, 26, 42, 0.4) 100%);
+      border: 2px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+      padding: 3rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(212, 175, 55, 0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .story-section:hover {
+      background: linear-gradient(135deg, rgba(45, 27, 78, 0.6) 0%, rgba(61, 26, 42, 0.5) 100%);
+      border-color: rgba(212, 175, 55, 0.5);
+      box-shadow: 0 16px 50px rgba(212, 175, 55, 0.15), inset 0 1px 0 rgba(212, 175, 55, 0.15);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .value-card {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(139, 111, 71, 0.08) 100%);
+      border: 2px solid rgba(212, 175, 55, 0.4);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .value-card:hover {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(139, 111, 71, 0.12) 100%);
+      border-color: rgba(212, 175, 55, 0.7);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 14px 35px rgba(212, 175, 55, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .value-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .value-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: #f4d03f;
+      margin-bottom: 0.7rem;
+    }
+
+    .value-description {
+      font-size: 0.95rem;
+      color: #d9c3f0;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      color: #34d399;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.5rem; }
+      nav ul { gap: 1rem; }
+      .story-section { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html" class="active">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>About Chai Culture</h1>
+
+    <div class="story-section">
+      <h2>Our Story</h2>
+      <p>
+        Chai Culture was born from a passion to revive the timeless tradition of chai brewing that has been cherished in Indian households for generations. We believe that every cup of chai tells a story—a story of warmth, hospitality, and the rich heritage of India.
+      </p>
+      <p>
+        Our journey began with a simple vision: to bring the authenticity and elegance of royal Indian chai to tea lovers around the world. We meticulously source the finest ingredients and craft our blends using time-honored recipes passed down through generations.
+      </p>
+      <p>
+        Today, Chai Culture stands as a testament to quality, tradition, and the art of tea brewing. Each blend is a celebration of India's diverse spice heritage and the craftsmanship that goes into creating the perfect cup of chai.
+      </p>
+    </div>
+
+    <div class="story-section">
+      <h2>Our Values</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🌾</div>
+          <div class="value-title">Authenticity</div>
+          <div class="value-description">We honor traditional chai-making methods and use authentic, sourced ingredients from trusted suppliers.</div>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">♻️</div>
+          <div class="value-title">Sustainability</div>
+          <div class="value-description">Committed to eco-friendly practices and sustainable sourcing of all our herbs and spices.</div>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">❤️</div>
+          <div class="value-title">Quality</div>
+          <div class="value-description">Every blend is crafted with care and tested for purity, ensuring the best experience in every cup.</div>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">🌍</div>
+          <div class="value-title">Community</div>
+          <div class="value-description">We celebrate the diverse cultures and communities that embrace the art of chai.</div>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">✨</div>
+          <div class="value-title">Innovation</div>
+          <div class="value-description">While honoring tradition, we continuously explore new flavor combinations and blends.</div>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">👑</div>
+          <div class="value-title">Heritage</div>
+          <div class="value-description">We preserve and celebrate the rich heritage of chai culture across generations.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-section">
+      <h2>Quality Promise</h2>
+      <p>
+        At Chai Culture, we promise to deliver <span class="highlight">100% natural, premium ingredients</span> with no artificial flavors or additives. Every batch undergoes rigorous quality checks to ensure you receive the finest chai blend.
+      </p>
+      <p>
+        We believe that chai is more than just a beverage—it's a ritual, a moment of peace, and a connection to centuries of tradition. That's why we're dedicated to bringing you authentic, carefully crafted chai blends that honor this beautiful legacy.
+      </p>
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/3a3d3c3e3e.js" crossorigin="anonymous"></script>
+</body>
+</html>
